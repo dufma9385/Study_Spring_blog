@@ -27,7 +27,11 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 			value="com.mysql.cj.jdbc.Driver" />
 
 		<property name="url"
-			value="jdbc:mysql://127.0.0.1:3306/mess?useSSL=false&amp;serverTimezone=Asia/Seoul" />
+			value="jdbc:mysql://127.0.0.1:3306/mess?
+			serverTimezone=UTC&amp;useUniCode=yes&amp;characterEncoding=UTF-8"
+			 />
+<!-- useSSL=false&amp;serverTimezone=Asia/Seoul" -->
+
 
 		<property name="username" value="mess"></property>
 
