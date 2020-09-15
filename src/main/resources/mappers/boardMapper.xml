@@ -6,6 +6,112 @@
 
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-    <mapper namespace="com.freehoon.web.board.boardMapper">
+    
+
+<mapper namespace="com.min.web.board.boardMapper">
+
+<select id="getBoardList" resultType="com.min.web.board.model.BoardVO">
+
+		SELECT
+
+			BID, CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT
+
+		FROM
+
+			TBL_BOARD
+
+	</select>
+
+	
+
+	<select id="getBoardContent" resultType="com.min.web.board.model.BoardVO" parameterType="com.freehoon.web.board.model.BoardVO">
+
+		SELECT
+
+			BID, CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT
+
+		FROM
+
+			TBL_BOARD
+
+		WHERE
+
+			BID = #{bid}
+
+	</select>
+
+	
+
+	<insert id="insertBoard" parameterType="com.min.web.board.model.BoardVO">
+
+		INSERT INTO TBL_BOARD (CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT)
+
+		VALUES (
+
+			#{cate_cd}
+
+			, #{title}
+
+			, #{content}
+
+			, #{tag}
+
+			, 0
+
+			, #{reg_id}
+
+			, now()
+
+			, now()
+
+		)
+
+	</insert>
+
+	
+
+	<update id="updateBoard" parameterType="com.min.web.board.model.BoardVO">
+
+		UPDATE TBL_BOARD SET
+
+			CATE_CD = #{cate_cd}
+
+			, TITLE = #{title}
+
+			, CONTENT = #{content}
+
+			, TAG = #{tag}
+
+			, EDIT_DT = now()
+
+		WHERE
+
+			BID = ${bid}
+
+	</update>
+
+	
+
+	<delete id="deleteBoard" parameterType="int">
+
+		DELETE FROM TBL_BOARD
+
+		WHERE BID = #{bid}
+
+	</delete>
+
+	
+
+	<update id="updateViewCnt" parameterType="com.min.web.board.model.BoardVO">
+
+		UPDATE TBL_BOARD SET
+
+			VIEW_CNT = VIEW_CNT + 1
+
+		WHERE
+
+			BID = #{bid}
+
+	</update>
 
 </mapper>
